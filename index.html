@@ -8,9 +8,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <title>Новое объявление</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script id="yandex-maps"></script>
-  <script type="module" crossorigin src="./assets/index.D-2V8E_s.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/style.BsGUjm_W.css">
+  <script type="module" crossorigin src="./assets/index.DgiuRic3.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/style.xIuA-uj7.css">
 </head>
 <body>
     <div id="app">
@@ -29,9 +30,15 @@
                     <div><strong>Кулдаун активен</strong><br>Следующая публикация через: <span id="cooldownTime">-</span></div>
                 </div>
 
-                <div class="progress-wrapper">
-                    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-                    <span class="progress-text" id="progressText">0%</span>
+                <!-- Новый стильный прогресс-бар -->
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span class="progress-label">Заполнение формы</span>
+                        <span class="progress-text" id="progressText">0%</span>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-fill low" id="progressFill"></div>
+                    </div>
                 </div>
             </div>
         </header>
@@ -116,9 +123,18 @@
                     <header class="card-header"><h2 class="card-title">📸 Фотографии</h2></header>
                     <div class="card-body">
                         <div class="photo-upload-area" id="photoUploadArea">
-                            <div class="upload-icon">📷</div>
-                            <div class="upload-text">Нажмите для выбора фото</div>
-                            <div class="upload-hint">Максимум 5 фото, до 5 МБ</div>
+                            <div class="upload-icon" id="uploadIcon">
+                                <lottie-player
+                                    src="https://assets5.lottiefiles.com/packages/lf20_usmfx6bp.json"
+                                    background="transparent"
+                                    speed="1"
+                                    style="width: 72px; height: 72px;"
+                                    loop
+                                    autoplay>
+                                </lottie-player>
+                            </div>
+                            <p class="upload-text">Нажмите для выбора фото</p>
+                            <p class="upload-hint">До 5 фото, макс. 5 МБ каждое</p>
                             <input type="file" class="photo-input" id="photoInput" accept="image/*" multiple>
                         </div>
                         <div class="photo-preview-grid" id="photoPreviewGrid"></div>
