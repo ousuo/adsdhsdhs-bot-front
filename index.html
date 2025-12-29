@@ -1,41 +1,41 @@
-<!-- === FILE: index.html === -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#007aff">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <title>Новое объявление</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script id="yandex-maps"></script>
-  <script type="module" crossorigin src="./assets/index.Mpkbi5gt.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/style.Bqvbi-36.css">
+  <script type="module" crossorigin src="./assets/index.Dtd_0g7h.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/style.Qc4m_1QU.css">
 </head>
 <body>
     <div id="app">
-        <!-- Glass Header -->
         <header class="header" id="header">
             <div class="header-content">
-                <div class="header-top">
-                    <div>
-                        <h1 id="headerTitle">Создать</h1>
-                        <p class="header-subtitle" id="headerSubtitle">Новое объявление</p>
-                    </div>
-                    <div class="slots-indicator" id="slotsIndicator">
-                        <span class="slots-icon">📍</span>
-                        <span id="slotsCount">5/5</span>
-                    </div>
+                <h1 id="headerTitle">Новое объявление</h1>
+                <p class="header-subtitle" id="headerSubtitle">Выберите категорию и заполните форму</p>
+                
+                <div class="slots-indicator" id="slotsIndicator">
+                    <span>🎯</span>
+                    <span>Доступно слотов: <strong id="slotsCount">-/-</strong></span>
                 </div>
 
                 <div class="cooldown-warning" id="cooldownWarning">
-                    <span>⏱️</span>
-                    <span>Следующая публикация через <strong id="cooldownTime">-</strong></span>
+                    <span>⏱</span>
+                    <div><strong>Кулдаун активен</strong><br>Следующая публикация через: <span id="cooldownTime">-</span></div>
                 </div>
 
+                <!-- Новый стильный прогресс-бар -->
                 <div class="progress-section">
-                    <span class="progress-text" id="progressText">0%</span>
+                    <div class="progress-header">
+                        <span class="progress-label">Заполнение формы</span>
+                        <span class="progress-text" id="progressText">0%</span>
+                    </div>
                     <div class="progress-container">
                         <div class="progress-fill low" id="progressFill"></div>
                     </div>
@@ -43,165 +43,151 @@
             </div>
         </header>
 
-        <!-- Form View -->
         <div class="view active" id="formView">
-            <div class="main-content">
-                
-                <!-- Category Selection - Grid -->
-                <p class="section-header">Категория</p>
-                <div class="category-grid" id="categoryGrid">
-                    <div class="category-item" data-category="Работа">
-                        <div class="category-icon work">💼</div>
-                        <span class="category-label">Работа</span>
-                    </div>
-                    <div class="category-item" data-category="Транспорт">
-                        <div class="category-icon transport">🚗</div>
-                        <span class="category-label">Транспорт</span>
-                    </div>
-                    <div class="category-item" data-category="Электроника">
-                        <div class="category-icon electronics">📱</div>
-                        <span class="category-label">Электроника</span>
-                    </div>
-                    <div class="category-item" data-category="Одежда">
-                        <div class="category-icon clothes">👗</div>
-                        <span class="category-label">Одежда</span>
-                    </div>
-                    <div class="category-item" data-category="Услуги">
-                        <div class="category-icon services">🔧</div>
-                        <span class="category-label">Услуги</span>
-                    </div>
-                    <div class="category-item" data-category="Другое">
-                        <div class="category-icon other">📦</div>
-                        <span class="category-label">Другое</span>
-                    </div>
-                </div>
-
-                <!-- Subcategory Pills -->
-                <div class="dynamic-section" id="subcategorySection">
-                    <p class="section-header">Подкатегория</p>
-                    <div class="subcategory-pills" id="subcategoryPills"></div>
-                </div>
-
-                <!-- Condition Chips -->
-                <div class="dynamic-section" id="conditionSection">
-                    <p class="section-header">Состояние</p>
-                    <div class="condition-selector" id="conditionSelector"></div>
-                </div>
-
-                <!-- Dynamic Fields Container -->
-                <div id="dynamicFieldsContainer"></div>
-
-                <!-- Title & Description - Grouped -->
-                <p class="section-header">Описание</p>
-                <div class="form-group-container">
-                    <div class="form-input-row has-icon">
-                        <div class="row-icon blue">📝</div>
-                        <input type="text" 
-                               class="input-borderless" 
-                               id="title" 
-                               placeholder="Заголовок объявления"
-                               maxlength="100">
-                    </div>
-                    <div class="form-textarea-row">
-                        <textarea class="textarea-borderless" 
-                                  id="description" 
-                                  placeholder="Подробное описание товара или услуги..."
-                                  maxlength="1000"></textarea>
-                    </div>
-                    <div class="char-counter" id="descCounter">0/1000</div>
-                </div>
-
-                <!-- Price - Grouped -->
-                <div class="dynamic-section" id="priceSection">
-                    <p class="section-header">Стоимость</p>
-                    <div class="form-group-container">
-                        <div class="form-input-row has-icon">
-                            <div class="row-icon green">💰</div>
-                            <span class="input-label">Цена</span>
-                            <div class="price-input-container">
-                                <input type="number" 
-                                       class="price-input" 
-                                       id="price" 
-                                       placeholder="Договорная"
-                                       min="0">
-                                <span class="price-currency">₽</span>
+            <div class="container">
+                <article class="card" id="categoryCard">
+                    <header class="card-header"><h2 class="card-title">📋 Категория</h2></header>
+                    <div class="card-body">
+                        <div class="form-group" id="categoryGroup">
+                            <label class="form-label" for="category">Категория <span class="badge badge--required">обязательно</span></label>
+                            <select class="select placeholder" id="category" required>
+                                <option value="" disabled selected>Выберите категорию</option>
+                                <option value="Работа">💼 Работа</option>
+                                <option value="Транспорт">🚗 Транспорт</option>
+                                <option value="Электроника">📱 Электроника</option>
+                                <option value="Одежда">👗 Одежда и обувь</option>
+                                <option value="Услуги">🔧 Услуги</option>
+                            </select>
+                        </div>
+                        <div class="subcategory-wrapper" id="subcategoryWrapper">
+                            <div class="form-group" id="subcategoryGroup">
+                                <label class="form-label" for="subcategory">Подкатегория <span class="badge badge--required">обязательно</span></label>
+                                <select class="select placeholder" id="subcategory"></select>
                             </div>
                         </div>
-                        <label class="toggle-row" id="negotiableRow">
-                            <div class="toggle-row-left">
-                                <div class="row-icon orange">💬</div>
-                                <span class="toggle-row-label">Торг уместен</span>
+                        <div class="condition-wrapper" id="conditionWrapper">
+                            <div class="form-group" id="conditionGroup">
+                                <label class="form-label" for="condition">Состояние <span class="badge badge--required">обязательно</span></label>
+                                <select class="select placeholder" id="condition"></select>
                             </div>
-                            <div class="toggle-switch">
+                        </div>
+                    </div>
+                </article>
+
+                <div id="dynamicFieldsContainer"></div>
+
+                <article class="card">
+                    <header class="card-header"><h2 class="card-title">📝 Заголовок и описание</h2></header>
+                    <div class="card-body">
+                        <div class="form-group" id="titleGroup">
+                            <label class="form-label" for="title">Заголовок <span class="badge badge--required">обязательно</span></label>
+                            <input type="text" class="input" id="title" placeholder="Например: iPhone 14 Pro" maxlength="100" required>
+                            <div class="field-footer">
+                                <span class="field-hint">Кратко опишите товар</span>
+                                <span class="char-count" id="titleCounter">0/100</span>
+                            </div>
+                        </div>
+                        <div class="form-group" id="descriptionGroup">
+                            <label class="form-label" for="description">Описание <span class="badge badge--required">обязательно</span></label>
+                            <textarea class="textarea" id="description" placeholder="Подробное описание..." maxlength="1000" required></textarea>
+                            <div class="field-footer">
+                                <span class="field-hint">Укажите детали</span>
+                                <span class="char-count" id="descCounter">0/1000</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card" id="priceCard">
+                    <header class="card-header"><h2 class="card-title">💰 Стоимость</h2></header>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="form-label" for="price">Цена <span class="badge badge--optional">опционально</span></label>
+                            <div class="price-field">
+                                <input type="number" class="input" id="price" placeholder="0" min="0">
+                                <span class="currency">₽</span>
+                            </div>
+                        </div>
+                        <label class="toggle-field">
+                            <span class="toggle-label">💬 Торг уместен</span>
+                            <label class="toggle">
                                 <input type="checkbox" id="negotiable">
                                 <span class="toggle-track"></span>
                                 <span class="toggle-thumb"></span>
-                            </div>
+                            </label>
                         </label>
                     </div>
-                </div>
+                </article>
 
-                <!-- Photos - Carousel -->
-                <p class="section-header">Фотографии</p>
-                <div class="photo-carousel" id="photoCarousel">
-                    <div class="photo-add-btn" id="photoAddBtn">
-                        <span class="photo-add-icon">+</span>
-                        <span class="photo-add-text">Добавить</span>
+                <article class="card">
+                    <header class="card-header"><h2 class="card-title">📸 Фотографии</h2></header>
+                    <div class="card-body">
+                        <div class="photo-upload-area" id="photoUploadArea">
+                            <div class="upload-icon" id="uploadIcon">
+                                <lottie-player
+                                    src="https://assets5.lottiefiles.com/packages/lf20_usmfx6bp.json"
+                                    background="transparent"
+                                    speed="1"
+                                    style="width: 72px; height: 72px;"
+                                    loop
+                                    autoplay>
+                                </lottie-player>
+                            </div>
+                            <p class="upload-text">Нажмите для выбора фото</p>
+                            <p class="upload-hint">До 5 фото, макс. 5 МБ каждое</p>
+                            <input type="file" class="photo-input" id="photoInput" accept="image/*" multiple>
+                        </div>
+                        <div class="photo-preview-grid" id="photoPreviewGrid"></div>
+                        <div class="photo-status" id="photoStatus"></div>
                     </div>
-                </div>
-                <p class="photo-count" id="photoCount">До 5 фотографий</p>
-                <input type="file" class="photo-input" id="photoInput" accept="image/*" multiple>
+                </article>
 
-                <!-- Contact - Grouped -->
-                <p class="section-header">Контакт</p>
-                <div class="form-group-container">
-                    <div class="form-input-row has-icon" id="contactRow">
-                        <div class="row-icon purple">👤</div>
-                        <input type="text" 
-                               class="input-borderless" 
-                               id="contact" 
-                               placeholder="@username или номер телефона">
-                    </div>
-                    <div class="form-input-row has-icon" id="locationRow">
-                        <div class="row-icon gray">📍</div>
-                        <span class="input-label">Локация</span>
-                        <span class="row-value" id="locationValue">Выбрать</span>
-                        <span class="row-chevron">›</span>
-                    </div>
-                </div>
-                <p class="section-footer" id="contactHint"></p>
-
-                <!-- Schedule - Grouped -->
-                <p class="section-header">Публикация</p>
-                <div class="form-group-container">
-                    <label class="toggle-row" id="scheduleToggleRow">
-                        <div class="toggle-row-left">
-                            <div class="row-icon blue">⏰</div>
-                            <span class="toggle-row-label">Отложить публикацию</span>
+                <article class="card">
+                    <header class="card-header"><h2 class="card-title">👤 Контактная информация</h2></header>
+                    <div class="card-body">
+                        <div class="form-group" id="contactGroup">
+                            <label class="form-label" for="contact">Контакт для связи <span class="badge badge--required">обязательно</span></label>
+                            <input type="text" class="input" id="contact" placeholder="@username или номер" required>
+                            <p class="contact-type" id="contactType"></p>
+                            <p class="error-message" id="contactError">Введите @username или номер</p>
                         </div>
-                        <div class="toggle-switch">
-                            <input type="checkbox" id="scheduleToggle">
-                            <span class="toggle-track"></span>
-                            <span class="toggle-thumb"></span>
-                        </div>
-                    </label>
-                    <div class="dynamic-section" id="scheduleFields">
-                        <div class="form-input-row">
-                            <span class="input-label">Дата</span>
-                            <input type="date" class="input-borderless text-right" id="scheduleDate">
-                        </div>
-                        <div class="form-input-row">
-                            <span class="input-label">Время</span>
-                            <input type="time" class="input-borderless text-right" id="scheduleTime" value="09:00">
+                        <div class="form-group">
+                            <label class="form-label" for="location">Местоположение <span class="badge badge--optional">опционально</span></label>
+                            <input type="text" class="input" id="location" placeholder="Выберите на карте" readonly>
+                            <p class="field-hint" id="locationHint">Нажмите для выбора на карте</p>
                         </div>
                     </div>
-                </div>
-                <p class="section-footer" id="scheduleHint">Объявление будет опубликовано сразу после модерации</p>
+                </article>
 
+                <article class="card">
+                    <header class="card-header"><h2 class="card-title">⏰ Время публикации</h2></header>
+                    <div class="card-body">
+                        <label class="toggle-field">
+                            <span class="toggle-label">📅 Отложенная публикация</span>
+                            <label class="toggle">
+                                <input type="checkbox" id="scheduleToggle">
+                                <span class="toggle-track"></span>
+                                <span class="toggle-thumb"></span>
+                            </label>
+                        </label>
+                        <div id="scheduleFieldsContainer" style="display: none;">
+                            <div class="form-row" style="margin-top: 12px;">
+                                <div class="form-group">
+                                    <label class="form-label" for="scheduleDate">Дата</label>
+                                    <input type="date" class="input" id="scheduleDate">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="scheduleTime">Время</label>
+                                    <input type="time" class="input" id="scheduleTime" value="09:00">
+                                </div>
+                            </div>
+                            <p class="field-hint" id="scheduleHint">Выберите дату и время</p>
+                        </div>
+                    </div>
+                </article>
             </div>
         </div>
 
-        <!-- Preview View -->
         <div class="view" id="previewView">
             <div class="preview-container">
                 <div class="telegram-message">
@@ -214,53 +200,26 @@
                     </div>
                 </div>
                 <div class="preview-actions">
-                    <button type="button" class="preview-button preview-button-secondary" id="backToFormBtn">
-                        ← Редактировать
-                    </button>
+                    <button type="button" class="preview-button preview-button-secondary" id="backToFormBtn">← Назад к редактированию</button>
                 </div>
-                <p class="preview-hint">
-                    📋 После отправки объявление будет проверено модератором<br>
-                    ⏰ Обычно это занимает 5-15 минут
-                </p>
+                <p class="preview-hint">📋 После отправки объявление будет проверено модератором<br>⏰ Обычно это занимает 5-15 минут</p>
             </div>
         </div>
 
-        <!-- Bottom Tab Bar -->
-        <nav class="tab-bar" id="tabBar">
-            <div class="tab-bar-content">
-                <button class="tab-item" id="tabSearch">
-                    <span class="tab-item-icon">🔍</span>
-                    <span class="tab-item-label">Поиск</span>
-                </button>
-                <div class="tab-item-create">
-                    <button class="create-button" id="tabCreate">
-                        <span class="create-button-icon">+</span>
-                    </button>
-                </div>
-                <button class="tab-item" id="tabProfile">
-                    <span class="tab-item-icon">👤</span>
-                    <span class="tab-item-label">Профиль</span>
-                </button>
-            </div>
-        </nav>
-
-        <!-- Map Modal -->
         <div class="map-modal" id="mapModal">
             <div class="map-header">
-                <h2 class="map-header-title">📍 Местоположение</h2>
+                <h2 class="map-header-title">📍 Выберите местоположение</h2>
                 <button type="button" class="map-close-btn" id="mapCloseBtn">×</button>
             </div>
             <div class="map-container">
-                <div id="locationMap"></div>
+                <div id="locationMap" style="width: 100%; height: 100%;"></div>
                 <div class="map-controls">
-                    <button type="button" class="map-control-btn" id="mapMyLocationBtn">📍</button>
+                    <button type="button" class="map-control-btn" id="mapMyLocationBtn" title="Моё местоположение">📍</button>
                 </div>
-                <div class="map-marker-hint">Переместите карту для выбора места</div>
+                <div class="map-marker-hint">👆 Перемещайте карту, чтобы выбрать место</div>
             </div>
             <div class="map-footer">
-                <div class="map-address" id="mapAddress">
-                    <span class="map-address-loading">Выберите место на карте</span>
-                </div>
+                <div class="map-address" id="mapAddress"><span class="map-address-loading">Выберите место на карте</span></div>
                 <div class="map-buttons">
                     <button type="button" class="map-btn map-btn-secondary" id="mapCancelBtn">Отмена</button>
                     <button type="button" class="map-btn map-btn-primary" id="mapConfirmBtn" disabled>Выбрать</button>
